@@ -1,4 +1,4 @@
-package org.example.Controller;
+package org.example.springbootdveloper;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
