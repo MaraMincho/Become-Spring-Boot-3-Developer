@@ -1,40 +1,36 @@
-package org.example.level2.Domain;
+package org.example.level2.domain;
 
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
-    private Long id;
+    private  Long id;
 
     @Column(name = "title", nullable = false)
-    private String title;
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getContent() {
-        return content;
-    }
+    private  String title;
 
     @Column(name = "content", nullable = false)
     private String content;
 
     @Builder
-    private Article(String title, String content) {
+    public  Article(String title, String content) {
         this.title = title;
         this.content = content;
     }
 
-    protected Article() {}
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }

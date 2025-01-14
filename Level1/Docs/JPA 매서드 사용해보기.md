@@ -47,7 +47,7 @@ public class Member {
 <br/>
 
 - (2) `protected` 기본 생성자입니다. 엔티티는 반드시 기본 생성자가 있어야 하고, 접근 제어자는`public` 또는 `protected여`야 합니다.
-  - **(public보다는 protected가 더 안전하다 why?)**
+  - **(public보다는 protected가 더 안전하다 why? -> 정리 필요)**
 
 <br/>
 
