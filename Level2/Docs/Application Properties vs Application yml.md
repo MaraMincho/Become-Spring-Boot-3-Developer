@@ -26,7 +26,7 @@ spring:
 # 두 코드의 비슷한 점
 
 ```java
-//DB Setting
+//DB Setting of properties
 spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
 spring.datasource.url=jdbc:oracle:thin:@localhost:1521:orcl
 spring.datasource.username=username
@@ -34,7 +34,7 @@ spring.datasource.password=password
 ```
 
 ```yml
-# DB Setting
+# DB Setting of yml
 spring:
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
