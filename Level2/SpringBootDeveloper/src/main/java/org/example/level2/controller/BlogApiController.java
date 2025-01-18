@@ -10,19 +10,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
-
 @RequiredArgsConstructor
 @RestController
 public class BlogApiController {
 
     private final BlogService blogService;
 
-    // HTTP매서드가 Post일 때 전달받은 URL과 동일하면 매서드로 매핑
     @PostMapping("/api/articles")
-    // @RequestBody로 요청 본문 값 매핑
-    public ResponseEntity<Article> addArticle(@RequestBody AddArticleRequest request) {
-        Article savedArticle = blogService.save(request);
+    public ResponseEntity<Article> addArticle(@RequestBody AddArticleRequest request, Principal principal) {
+        Article savedArticle = blogService.save(request, principal.getName());
+
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(savedArticle);
     }
@@ -47,7 +46,7 @@ public class BlogApiController {
     }
 
     @DeleteMapping("/api/articles/{id}")
-    public ResponseEntity<Void> delete(@PathVariable long id) {
+    public ResponseEntity<Void> deleteArticle(@PathVariable long id) {
         blogService.delete(id);
 
         return ResponseEntity.ok()
@@ -55,11 +54,12 @@ public class BlogApiController {
     }
 
     @PutMapping("/api/articles/{id}")
-    public ResponseEntity<Article> updateArticle(@PathVariable long id, @RequestBody UpdateArticleRequest request
-    ) {
-        Article updateArticle = blogService.update(id, request);
+    public ResponseEntity<Article> updateArticle(@PathVariable long id,
+                                                 @RequestBody UpdateArticleRequest request) {
+        Article updatedArticle = blogService.update(id, request);
 
         return ResponseEntity.ok()
-                .body(updateArticle);
+                .body(updatedArticle);
     }
+
 }
